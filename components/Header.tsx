@@ -29,7 +29,7 @@ export default function Header() {
         >
           experience
         </Link>
-        <Link
+        {/* <Link
           href="/blog"
           className={`${pathname === "/blog"
               ? "font-bold text-gray-900 dark:text-gray-50"
@@ -37,7 +37,7 @@ export default function Header() {
             }`}
         >
           blog
-        </Link>
+        </Link> */}
         <Link
           href="/contact"
           className={`${pathname === "/contact"
