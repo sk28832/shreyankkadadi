@@ -100,7 +100,7 @@ export default function Contact() {
                             </h1>
                         </div>
                         <p className="text-gray-500 dark:text-gray-400">
-                            feel free to reach out! i promise i won't byte :)
+                            feel free to reach out! i promise i won&apos;t byte :)
                         </p>
                     </div>
                     <Form {...form}>

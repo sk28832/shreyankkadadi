@@ -23,7 +23,7 @@ export default function Experience() {
                                     work experience
                                 </CardTitle>
                                 <CardDescription className={cn('text-muted-foreground')}>
-                                    i've worked at...
+                                    i&apos;ve worked at...
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
@@ -51,7 +51,7 @@ export default function Experience() {
                                                 <FaEye className="h-5 w-5 text-primary" />
                                                 <h2 className="text-xl">
                                                     <a href="https://www.aiandeye.com/" className="font-bold underline text-primary">ai and eye,</a>{' '}
-                                                    director of r&d
+                                                    director of r&amp;d
                                                 </h2>
                                             </div>
                                             <p className={cn('text-sm', 'text-muted-foreground')}>
@@ -154,7 +154,7 @@ export default function Experience() {
                                     education
                                 </CardTitle>
                                 <CardDescription className={cn('text-muted-foreground')}>
-                                    i've studied at...
+                                    i&apos;ve studied at...
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>

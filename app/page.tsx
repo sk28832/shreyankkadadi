@@ -1,4 +1,4 @@
-// index.tsx
+// app/page.tsx
 import Link from "next/link";
 import Header from "@/components/Header";
 import "animate.css";
@@ -10,12 +10,12 @@ export default function Home() {
         <Header />
         <div className="animate__animated animate__fadeIn animate__faster">
           <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
-            hey! i'm a cofounder @{" "}
+            hey! i&apos;m a cofounder @{" "}
             <a className="text-black" href="https://www.tryswiftlaw.com/">
               swiftlaw
             </a>
             , a legaltech startup revolutionizing client intake. in my free time,
-            i'm particularly interested in art,{" "}
+            i&apos;m particularly interested in art,{" "}
             <a
               href="https://www.goodreads.com/user/show/65010773-shreyank-kadadi"
               style={{ textDecoration: "underline" }}
