@@ -14,7 +14,7 @@ export default function Home() {
             <a className="text-black" href="https://www.tryswiftlaw.com/">
               swiftlaw
             </a>
-            , a legaltech startup revolutionizing fund document drafting. in my free time,
+            , a legaltech startup revolutionizing drafting for lawyers. in my free time,
             i&apos;m particularly interested in art,{" "}
             <a
               href="https://www.goodreads.com/user/show/65010773-shreyank-kadadi"

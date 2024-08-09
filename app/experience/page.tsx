@@ -42,7 +42,7 @@ export default function Experience() {
                                             </p>
                                         </div>
                                         <p className={cn('max-w-[700px]', 'text-muted-foreground')}>
-                                            building ai-powered drafting tools for fund attorneys
+                                            building ai-powered drafting tools for attorneys
                                         </p>
                                     </div>
                                     <div className="p-4 bg-slate-100 rounded-lg">
