@@ -1,19 +1,26 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "shreyank kadadi",
-  description: "shreyank kadadi's portfolio",
+  description: "i do product at heidi.",
+  openGraph: {
+    title: "shreyank kadadi",
+    description: "i do product at heidi.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "shreyank kadadi",
+    description: "i do product at heidi.",
+    creator: "@sk28832",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }
