@@ -282,3 +282,190 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ===== fast motion tokens ===== */
+.motion-fast {
+  transition-property: color, background-color, border-color, opacity, transform;
+  transition-duration: 250ms;
+  transition-timing-function: var(--ease-brush);
+}
+
+.motion-snap {
+  transition-property: opacity, transform;
+  transition-duration: 350ms;
+  transition-timing-function: var(--ease-brush);
+}
+
+.motion-stage {
+  transition-property: opacity, transform;
+  transition-duration: 400ms;
+  transition-timing-function: var(--ease-ink);
+}
+
+.study-panel-enter {
+  animation: studyPanelEnter 350ms var(--ease-brush) both;
+}
+
+@keyframes studyPanelEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== hanga entry preview peel ===== */
+.hanga-preview-layer {
+  animation: hangaPreviewPeel 2.8s var(--ease-settle) infinite;
+}
+
+.hanga-preview-layer-0 { animation-delay: 0s; }
+.hanga-preview-layer-1 { animation-delay: 0.08s; }
+.hanga-preview-layer-2 { animation-delay: 0.16s; }
+.hanga-preview-layer-3 { animation-delay: 0.24s; }
+
+@keyframes hangaPreviewPeel {
+  0%, 100% { transform: translate(0, 0); opacity: 1; }
+  50% { transform: translate(4px, -3px); opacity: 0.88; }
+}
+
+/* ===== study scrolly visuals ===== */
+.study-stage {
+  will-change: opacity, transform;
+  contain: layout style;
+}
+
+.study-visual-inner {
+  width: 100%;
+  max-width: 320px;
+}
+
+.study-peel-layer {
+  animation: studyPeel 3s var(--ease-settle) infinite;
+}
+
+.study-peel-0 { animation-delay: 0s; }
+.study-peel-1 { animation-delay: 0.1s; }
+.study-peel-2 { animation-delay: 0.2s; }
+.study-peel-3 { animation-delay: 0.3s; }
+
+@keyframes studyPeel {
+  0%, 100% {
+    transform: translate(0, 0) rotateY(0deg);
+    opacity: 1;
+  }
+  45% {
+    transform: translate(calc(var(--peel-i, 1) * 12px), -8px) rotateY(8deg);
+    opacity: 0.92;
+  }
+}
+
+.study-peel-0 { --peel-i: 3; }
+.study-peel-1 { --peel-i: 2; }
+.study-peel-2 { --peel-i: 1; }
+.study-peel-3 { --peel-i: 0; }
+
+.study-bero-wash {
+  background: linear-gradient(180deg, transparent 0%, #4a6fa5 35%, #1e3a5f 100%);
+  opacity: 0.75;
+  animation: studyBeroPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes studyBeroPulse {
+  0%, 100% { opacity: 0.65; transform: translateY(0); }
+  50% { opacity: 0.85; transform: translateY(-4px); }
+}
+
+.study-bokashi-wipe {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(26, 26, 26, 0.15) 30%,
+    transparent 60%
+  );
+  background-size: 200% 100%;
+  animation: studyBokashiWipe 2s linear infinite;
+}
+
+@keyframes studyBokashiWipe {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+.study-keyblock-stroke {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: studyStrokeDraw 2s var(--ease-brush) infinite alternate;
+}
+
+@keyframes studyStrokeDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+.study-rain-line {
+  animation: studyRain 1.2s ease-in infinite;
+}
+
+@keyframes studyRain {
+  0%, 100% { opacity: 0.2; transform: translateY(0); }
+  50% { opacity: 0.5; transform: translateY(4px); }
+}
+
+.study-corner-mask {
+  animation: studyCornerIn 2s var(--ease-settle) infinite alternate;
+}
+
+@keyframes studyCornerIn {
+  from { transform: translate(4px, -4px); opacity: 0.7; }
+  to { transform: translate(0, 0); opacity: 1; }
+}
+
+.study-hanmoto-dot {
+  background: var(--parchment);
+}
+
+.study-hanmoto-active {
+  animation: studyDotPulse 2.4s ease-in-out infinite;
+  background: var(--umber);
+  border-color: var(--umber);
+}
+
+@keyframes studyDotPulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+.study-corpus-slide {
+  animation: studyCorpusFade 9s ease-in-out infinite;
+  opacity: 0;
+}
+
+.study-corpus-0 { animation-delay: 0s; }
+.study-corpus-1 { animation-delay: 3s; }
+.study-corpus-2 { animation-delay: 6s; }
+
+@keyframes studyCorpusFade {
+  0%, 30% { opacity: 1; }
+  33%, 100% { opacity: 0; }
+}
+
+.study-modern-blob {
+  animation: studyBlobDrift 3s ease-in-out infinite alternate;
+}
+
+@keyframes studyBlobDrift {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(12px, -8px) scale(1.08); }
+}
+
+.study-modern-merge {
+  animation: studyMergePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes studyMergePulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(0.98); }
+}

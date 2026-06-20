@@ -7,4 +7,11 @@ technologies used:
 4. animate.css for animations
 5. email.js for contact form submission
 6. vercel for deployment
-   
+
+## environment
+
+```
+NEXT_PUBLIC_HANGA_URL=https://hanga.shreyankkadadi.com
+```
+
+used by `/studio/hanga` to link to the live hanga tool.
