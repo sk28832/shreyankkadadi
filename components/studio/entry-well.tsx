@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { HangaPreview } from "@/components/studio/hanga-preview";
+import { KokoroPreview } from "@/components/studio/kokoro-preview";
 import type { StudioProject } from "@/lib/studio/projects";
 
 type Props = {
@@ -15,6 +16,7 @@ export function EntryWell({ project, index = 0 }: Props) {
         className="group flex gap-5 sm:gap-6 p-4 sm:p-5 rounded-sm bg-parchment/50 border border-stone/30 hover:border-umber/40 hover:-translate-y-0.5 transition-all motion-fast"
       >
         {project.preview === "hanga" && <HangaPreview />}
+        {project.preview === "kokoro" && <KokoroPreview />}
         <div className="min-w-0 flex-1 flex flex-col justify-center gap-2">
           <h2 className="font-serif text-xl sm:text-2xl text-ink group-hover:text-umber transition-colors motion-fast">
             {project.title}
