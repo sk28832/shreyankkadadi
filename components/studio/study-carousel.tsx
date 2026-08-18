@@ -12,6 +12,8 @@ import { cn } from "@/lib/utils";
 export type StudySection<Id extends string = string> = {
   id: Id;
   title: string;
+  /** Shorter label for the section tabs when the title is long. */
+  short?: string;
   lead: string;
   craft: string;
   engine: string;
@@ -33,7 +35,19 @@ type Props<Id extends string> = {
   sections: StudySection<Id>[];
   renderVisual: (id: Id) => ReactNode;
   cta: StudyCta;
+  /** Rendered between the hero and the section reader. */
+  intro?: ReactNode;
 };
+
+function isTypingTarget(target: EventTarget | null) {
+  if (!(target instanceof HTMLElement)) return false;
+  return (
+    target.tagName === "IFRAME" ||
+    target.tagName === "INPUT" ||
+    target.tagName === "TEXTAREA" ||
+    target.isContentEditable
+  );
+}
 
 export function StudyCarousel<Id extends string>({
   title,
@@ -42,15 +56,18 @@ export function StudyCarousel<Id extends string>({
   sections,
   renderVisual,
   cta,
+  intro,
 }: Props<Id>) {
   const [index, setIndex] = useState(0);
   const [animKey, setAnimKey] = useState(0);
   const total = sections.length;
   const section = sections[index];
+  const prev = sections[(index - 1 + total) % total];
+  const next = sections[(index + 1) % total];
 
   const go = useCallback(
-    (next: number) => {
-      const wrapped = ((next % total) + total) % total;
+    (target: number) => {
+      const wrapped = ((target % total) + total) % total;
       setIndex(wrapped);
       setAnimKey((k) => k + 1);
     },
@@ -59,6 +76,7 @@ export function StudyCarousel<Id extends string>({
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if (isTypingTarget(e.target)) return;
       if (e.key === "ArrowLeft") go(index - 1);
       if (e.key === "ArrowRight") go(index + 1);
     };
@@ -92,51 +110,54 @@ export function StudyCarousel<Id extends string>({
           </p>
         </div>
 
-        <div className="mb-8 flex items-center justify-between gap-4">
-          <button
-            type="button"
-            onClick={() => go(index - 1)}
-            className="font-serif text-sm text-stone hover:text-umber transition-colors motion-fast px-2 py-1"
-            aria-label="previous section"
-          >
-            ←
-          </button>
+        {intro}
 
-          <div className="flex flex-wrap items-center justify-center gap-2">
+        <div className="mb-8 sm:mb-10">
+          <div className="flex items-baseline justify-between gap-4 mb-3">
+            <p className="text-stone text-xs sm:text-sm font-serif">
+              sections
+            </p>
+            <p className="text-stone text-xs font-serif tabular-nums">
+              {index + 1} of {total}
+            </p>
+          </div>
+
+          <div
+            role="tablist"
+            aria-label="sections"
+            className="flex flex-wrap gap-x-5 gap-y-1 border-b border-stone/30"
+          >
             {sections.map((s, i) => (
               <button
                 key={s.id}
                 type="button"
+                role="tab"
+                id={`study-tab-${s.id}`}
+                aria-selected={i === index}
+                aria-controls={`study-panel-${s.id}`}
                 onClick={() => go(i)}
                 className={cn(
-                  "w-2 h-2 rounded-full transition-all motion-fast",
+                  "font-serif text-sm sm:text-base pb-3 -mb-px border-b-2 transition-colors motion-fast",
                   i === index
-                    ? "bg-umber scale-110"
-                    : "bg-stone/40 hover:bg-stone",
+                    ? "text-ink border-[color:var(--umber)]"
+                    : "text-stone border-transparent hover:text-umber",
                 )}
-                aria-label={`section ${i + 1}: ${s.title}`}
-                aria-current={i === index ? "true" : undefined}
-              />
+              >
+                <span className="tabular-nums text-xs mr-1.5 opacity-70">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {s.short ?? s.title}
+              </button>
             ))}
           </div>
-
-          <button
-            type="button"
-            onClick={() => go(index + 1)}
-            className="font-serif text-sm text-stone hover:text-umber transition-colors motion-fast px-2 py-1"
-            aria-label="next section"
-          >
-            →
-          </button>
         </div>
-
-        <p className="text-center text-xs text-stone mb-6 font-serif tabular-nums">
-          {index + 1} / {total}
-        </p>
 
         <div
           key={animKey}
-          className="study-panel-enter grid md:grid-cols-2 gap-8 md:gap-10 min-h-[min(70vh,520px)] mb-14"
+          role="tabpanel"
+          id={`study-panel-${section.id}`}
+          aria-labelledby={`study-tab-${section.id}`}
+          className="study-panel-enter grid md:grid-cols-2 gap-8 md:gap-10 md:min-h-[min(62vh,480px)] mb-10"
         >
           <div className="flex flex-col justify-center">
             <h2 className="font-serif text-xl sm:text-2xl text-ink mb-3">
@@ -153,6 +174,37 @@ export function StudyCarousel<Id extends string>({
 
           <div className="flex items-center">{renderVisual(section.id)}</div>
         </div>
+
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-4">
+          <button
+            type="button"
+            onClick={() => go(index - 1)}
+            className="group text-left p-4 rounded-sm border border-stone/30 bg-[rgba(238,232,213,0.5)] hover:border-[color:var(--umber)] transition-colors motion-fast"
+          >
+            <span className="block text-xs font-serif text-stone mb-1">
+              ← previous
+            </span>
+            <span className="block font-serif text-sm sm:text-base text-ink group-hover:text-[color:var(--umber)] transition-colors motion-fast">
+              {prev.short ?? prev.title}
+            </span>
+          </button>
+          <button
+            type="button"
+            onClick={() => go(index + 1)}
+            className="group text-right p-4 rounded-sm border border-stone/30 bg-[rgba(238,232,213,0.5)] hover:border-[color:var(--umber)] transition-colors motion-fast"
+          >
+            <span className="block text-xs font-serif text-stone mb-1">
+              next →
+            </span>
+            <span className="block font-serif text-sm sm:text-base text-ink group-hover:text-[color:var(--umber)] transition-colors motion-fast">
+              {next.short ?? next.title}
+            </span>
+          </button>
+        </div>
+
+        <p className="text-xs text-stone font-serif mb-14">
+          arrow keys move between sections.
+        </p>
 
         <div className="pt-6 border-t border-stone/30">
           <BrushDivider className="mb-8" />

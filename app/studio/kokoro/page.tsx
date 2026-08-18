@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { KokoroCarousel } from "@/components/studio/kokoro/kokoro-carousel";
 
 export const metadata: Metadata = {
-  title: "kokoro no tōkaidō — shreyank kadadi",
+  title: "platformer along the tōkaidō — shreyank kadadi",
   description:
-    "a meditative platformer along the tōkaidō, calibrated on hiroshige — five stations, tight controls, three lines of haiku between them.",
+    "kokoro no tōkaidō: five browser stations with celeste-style movement and hiroshige prints as backgrounds.",
 };
 
 export default function KokoroStudyPage() {

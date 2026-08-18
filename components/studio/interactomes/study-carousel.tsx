@@ -11,17 +11,17 @@ import {
 export function InteractomesStudy() {
   return (
     <StudyCarousel
-      name="fis · neural dynamics"
-      title="map causal protein links across the brain"
+      name="neural dynamics"
+      title="causal protein networks"
       hero={HERO}
       sections={INTERACTOMES_SECTIONS}
       renderVisual={(id) => <InteractomesSectionVisual id={id} />}
       cta={{
-        body: "the full thesis — methods, figures, and the fis derivation — is available as a pdf.",
+        body: "the full thesis covers the methods, the fis derivation, and every figure.",
         href: THESIS_PDF,
-        label: "download thesis",
+        label: "download pdf",
         download: "novel-functional-interactomes-of-proteins.pdf",
-        note: "ucla computational & systems biology · neural dynamics group · mentor sharmila venugopal.",
+        note: "ucla computational and systems biology, 2023. mentor: dr. sharmila venugopal.",
       }}
     />
   );

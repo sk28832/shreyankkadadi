@@ -3,6 +3,7 @@ import type { PosterId } from "@/components/studio/kokoro/section-posters";
 export type KokoroSection = {
   id: PosterId;
   title: string;
+  short: string;
   lead: string;
   craft: string;
   engine: string;
@@ -19,6 +20,7 @@ export const KOKORO_SECTIONS: KokoroSection[] = [
   {
     id: "nihonbashi",
     title: "日本橋 · nihonbashi — departure",
+    short: "nihonbashi",
     lead: "a small game about walking a very old road.",
     craft:
       "the tōkaidō is fifty-three post stations between edo and kyoto. hiroshige printed one image per station in 1833 and made his career. this game keeps five — the same road, shortened to a pilgrimage you can finish in an evening. the player has lost something. the road may or may not return it.",
@@ -28,6 +30,7 @@ export const KOKORO_SECTIONS: KokoroSection[] = [
   {
     id: "satta",
     title: "薩埵峠 · satta pass — teaching by geometry",
+    short: "satta pass",
     lead: "the level introduces wall-jump without saying wall-jump.",
     craft:
       "there is one chimney. two facing walls, sixteen tiles tall, sixty-four pixels apart. the only way up is to touch one wall, leap to the other, alternate. the level never says this. hiroshige's satta pass shows a traveller between two cliffs with fuji beyond them — the geometry is the instruction.",
@@ -37,6 +40,7 @@ export const KOKORO_SECTIONS: KokoroSection[] = [
   {
     id: "numazu",
     title: "沼津 · numazu — the sources",
+    short: "numazu",
     lead: "every backdrop is a real hiroshige, downloaded from a museum.",
     craft:
       "the numazu print is twilight moon over the road — pines silhouetted, a figure walking beneath a rising moon. it is the level. the file is the metropolitan museum's high-res scan, wikimedia commons, public domain worldwide. same for mishima (met), yui/satta pass (eisei bunko), kanbara: night snow (mfa boston), nihonbashi (british museum), and sanjō ōhashi.",
@@ -46,6 +50,7 @@ export const KOKORO_SECTIONS: KokoroSection[] = [
   {
     id: "mishima",
     title: "三島 · mishima — level as haiku",
+    short: "mishima",
     lead: "one mechanic per station, three lines of poem between them.",
     craft:
       "the level design rule is haiku. each station introduces one idea and no more: run and jump at nihonbashi, wall-jump at satta, precision dashes at numazu, dash-over-spikes at mishima, walk to the goal at sanjō. between them, three lines fade in on an ink stripe. the reader lingers before the button prompt appears.",
@@ -55,6 +60,7 @@ export const KOKORO_SECTIONS: KokoroSection[] = [
   {
     id: "sanjo",
     title: "京師 · sanjō ōhashi — arrival",
+    short: "sanjō ōhashi",
     lead: "the last bridge, and the tally of everything it took to get there.",
     craft:
       "kyoto is not the destination — the bridge into kyoto is. hiroshige knew this: the last print in the series is sanjō ōhashi, not the palace beyond it. our sanjō is a walk, not a puzzle. one small stair, one bigger torii, cherry petals. the ending scene fades in with the closing haiku, a soft line that reads N falls across the road, then a prompt.",

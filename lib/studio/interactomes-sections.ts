@@ -1,8 +1,8 @@
 export const HERO = {
   primary:
-    "functional interactomes is a ucla thesis from the neural dynamics group — a calculator that scores causal protein–protein edges from experimental literature, then builds the network those edges imply.",
+    "my undergraduate thesis with the ucla neural dynamics group. it defines a functional interactomes score (fis) for protein pairs, computes it from published experiments, and assembles the results into a directed network.",
   secondary:
-    "predictive databases guess that two proteins might touch. fis asks whether one actually changed the other — in spiking, in synaptic remodeling — and weights the edge accordingly.",
+    "databases like string estimate how likely two proteins are to interact. fis asks a different question: did one protein measurably change the other, and in what direction. that answer becomes the edge weight.",
 };
 
 export type InteractomesSectionId =
@@ -24,47 +24,47 @@ export const INTERACTOMES_SECTIONS: InteractomesSection[] = [
   {
     id: "causal",
     title: "why causal edges",
-    lead: "biophysics scales poorly; predictive graphs still need the lab.",
+    lead: "biophysical models do not scale, and predictive networks still require validation.",
     craft:
-      "hodgkin–huxley and cable models explain a neuron with equations, but they do not freely absorb new molecular players. string-style networks scale, yet their confidence scores are predictions — useful maps that still demand experimental proof.",
+      "models like hodgkin-huxley describe a neuron precisely but cannot absorb arbitrary new molecular components. network models scale well, but their edges are confidence estimates built from co-occurrence and co-expression, so each one still needs experimental confirmation.",
     engine:
-      "fis sits between those poles: a directed graph whose edges come from published causal effects, not co-occurrence guesses. nodes are proteins; an arrow means one induced a measurable change in another.",
+      "fis takes the middle path. nodes are proteins and each directed edge represents a measured functional change that one protein induced in another, so the graph is built from evidence rather than likelihood.",
   },
   {
     id: "evidence",
-    title: "150+ studies into tables",
-    lead: "the corpus is hand-curated mechanistic work, not text mining soup.",
+    title: "the corpus",
+    lead: "over 150 studies, read and encoded by hand.",
     craft:
-      "we pulled low-throughput neural studies from pubmed and sorted them into structured scientific meta summaries — interactors, effect direction, functional change. two functional lenses matter most here: neural spiking and synaptic remodeling.",
+      "we selected low-throughput mechanistic studies from pubmed rather than high-throughput screens, because the claim we need is causal and specific. we tracked two functional effects: change in neural spiking and change in synaptic remodeling.",
     engine:
-      "those summaries collapse into a csv: pubmed id, protein pair, effect direction, and which functional associations flipped. that file is the only input the calculator needs besides a lookup table of association weights.",
+      "each study was reduced to a structured summary of interactors, effect direction, and which functions changed. those summaries collapse into one csv, which together with a lookup table of functional weights is the only input the calculator requires.",
   },
   {
     id: "formula",
-    title: "the fis itself",
-    lead: "median directionality times functional association weight.",
+    title: "the score",
+    lead: "median effect direction multiplied by a functional association weight.",
     craft:
-      "directionality is the signed change in protein b under a. take the median across experiments for a pair. the weight comes from which associations actually moved — spiking, synaptic function, and so on — with a small priority table so some changes count harder.",
+      "direction is the signed change in protein b caused by protein a, taken as the median across all experiments reporting that pair, so a single outlier study cannot dominate an edge. the weight counts which functions changed and ranks them, so a pair affecting both spiking and synaptic function scores higher than one affecting neither.",
     engine:
-      "fis = dm × w_a→b. a zero weight means the association did not change; a two might mean both spiking and synapse shifted. the product is the edge weight the network will carry.",
+      "the two terms multiply to give the fis for that pair. a weight of zero means no functional change was observed, which drops the edge from the graph.",
   },
   {
     id: "calculator",
-    title: "automating the score",
-    lead: "pandas and numpy do the bookkeeping; networkx draws the graph.",
+    title: "the pipeline",
+    lead: "python end to end, from tables to a plotted graph.",
     craft:
-      "two tables in: the experiment sheet and the functional association lookup. the calculator builds a pairwise effect table (median directions), looks up weights, multiplies, and writes fis rows ready for graph construction.",
+      "the calculator reads the experiment table into pandas, derives a pairwise effect table of median directions, looks up the functional weight for each pair, and writes out scored edges. automating it mattered once the corpus grew past a few dozen studies.",
     engine:
-      "networkx builds the directed weighted graph; matplotlib and seaborn render it. the flowchart in the thesis is the whole pipeline on one page — encode, score, select, plot.",
+      "networkx builds the directed weighted graph from those edges, and matplotlib and seaborn render the network and the topology plots.",
   },
   {
     id: "topology",
-    title: "hubs and bridges",
-    lead: "degree and betweenness turn the graph into hypotheses.",
+    title: "hubs and intermediaries",
+    lead: "degree and betweenness identify which proteins to study next.",
     craft:
-      "in- and out-degree are right-skewed: most proteins are quiet; a few are hubs. betweenness marks intermediaries that sit on many shortest paths — bridges you would want to look at if you care about neuroinflammation meeting excitability.",
+      "both in-degree and out-degree are right-skewed: most proteins have few connections while a small number act as hubs. proteins with high betweenness centrality lie on many shortest paths, making them likely mediators between otherwise separate parts of the network.",
     engine:
-      "centrality plots rescale node color and size by betweenness. the claim is modest and useful: causal topology is a place to generate the next experiment, not a finished therapy map.",
+      "we plot centrality by scaling node size and color. the output is a ranked list of candidates for follow-up experiments, not a claim about treatment.",
   },
 ];
 

@@ -48,7 +48,7 @@ export function EntryWell({ project, index = 0 }: Props) {
         </div>
 
         <div className="flex flex-1 flex-col gap-3 p-5 sm:p-6">
-          <p className="text-stone text-xs sm:text-sm font-serif tracking-wide">
+          <p className="text-stone text-xs sm:text-sm font-serif">
             {project.name}
           </p>
           <h2 className="font-serif text-2xl sm:text-3xl text-ink leading-[1.15] group-hover:text-umber transition-colors motion-fast">
@@ -57,10 +57,7 @@ export function EntryWell({ project, index = 0 }: Props) {
           <p className="text-brush-gray text-sm sm:text-base leading-relaxed">
             {project.blurb}
           </p>
-          <p className="mt-auto pt-2 text-ink text-sm font-serif leading-relaxed">
-            {project.outcome}
-          </p>
-          <p className="text-stone text-xs font-serif tabular-nums">
+          <p className="mt-auto pt-2 text-stone text-xs font-serif tabular-nums">
             {project.year} · {project.kind}
           </p>
         </div>

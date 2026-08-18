@@ -47,16 +47,7 @@ export function EegPreview({ className = "" }: { className?: string }) {
           fill="#93a1a1"
           style={{ fontSize: 11, fontFamily: "Georgia, serif" }}
         >
-          motor window · 0–300
-        </text>
-        <text
-          x="300"
-          y="188"
-          textAnchor="end"
-          fill="#8b4513"
-          style={{ fontSize: 12, fontFamily: "Georgia, serif" }}
-        >
-          73%
+          0–300
         </text>
       </svg>
     </div>

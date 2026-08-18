@@ -11,16 +11,16 @@ import {
 export function EegStudy() {
   return (
     <StudyCarousel
-      name="eeg study"
-      title="classify imagined movement from brain signals"
+      name="eeg"
+      title="motor imagery classification"
       hero={HERO}
       sections={EEG_SECTIONS}
       renderVisual={(id) => <EegSectionVisual id={id} />}
       cta={{
-        body: "models, notebooks, and the write-up live in the public repo.",
+        body: "the models, training notebooks, and the full write-up are on github.",
         href: EEG_GITHUB,
-        label: "open on github",
-        note: "cnn+gru edged the board at 73%; dilation was the quiet lever.",
+        label: "github",
+        note: "with arvind kalyan and richard jiang, ucla, 2023.",
       }}
     />
   );

@@ -173,7 +173,7 @@ function ChatMock() {
 function StackMock() {
   return (
     <div className="study-visual-inner w-full aspect-[4/3] rounded-sm border border-stone/20 bg-washi p-6 flex flex-col justify-center gap-3">
-      {["next.js · contenteditable", "openai · /api/process", "tracked changes · human gate"].map(
+      {["next.js", "openai /api/process", "tracked edits"].map(
         (line) => (
           <div
             key={line}

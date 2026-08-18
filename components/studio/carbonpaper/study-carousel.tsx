@@ -13,16 +13,16 @@ export function CarbonpaperStudy() {
   return (
     <StudyCarousel
       name="carbonpaper"
-      title="an ai document editor with tracked edits"
+      title="ai document editor"
       hero={HERO}
       sections={CARBON_PAPER_SECTIONS}
       renderVisual={(id) => <CarbonpaperSectionVisual id={id} />}
       cta={{
-        body: "the editor is live — open a document, select a passage, and ask carbonai to revise or explain.",
+        body: "the editor is deployed. open a document, select a passage, and ask for an edit.",
         href: CARBON_PAPER_URL,
-        label: "open carbonpaper",
-        secondary: { href: CARBON_PAPER_GITHUB, label: "source on github" },
-        note: "needs an openai key in local .env if you run it yourself.",
+        label: "open app",
+        secondary: { href: CARBON_PAPER_GITHUB, label: "github" },
+        note: "running it locally requires an openai api key.",
       }}
     />
   );

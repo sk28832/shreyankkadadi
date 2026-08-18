@@ -9,8 +9,7 @@ import { STUDIO_PROJECTS } from "@/lib/studio/projects";
 
 export const metadata: Metadata = {
   title: "studio — shreyank kadadi",
-  description:
-    "tools, games, and research i’ve shipped — from woodblock engines to published clinical ai.",
+  description: "things i've worked on — tools, a game, and research.",
 };
 
 export default function StudioPage() {
@@ -25,13 +24,8 @@ export default function StudioPage() {
 
         <BrushDivider className="mb-10 sm:mb-14" />
 
-        <p className="text-lg sm:text-xl text-ink leading-relaxed mb-4 ink-reveal-subtle delay-3 max-w-2xl">
-          things i&apos;ve actually shipped — tools in production, a game you
-          can play, research with numbers and a paper with my name on it.
-        </p>
-        <p className="text-base sm:text-lg text-brush-gray leading-relaxed mb-12 sm:mb-14 ink-reveal-subtle delay-4 max-w-2xl">
-          pick one up. each page walks through what it is, how it works, and
-          where to open it.
+        <p className="text-lg sm:text-xl text-ink leading-relaxed mb-12 sm:mb-14 ink-reveal-subtle delay-3 max-w-2xl">
+          these are the things i&apos;ve worked on.
         </p>
 
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
