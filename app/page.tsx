@@ -1,6 +1,6 @@
 "use client";
 
-import { FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import {
   BrushDivider,
@@ -23,8 +23,7 @@ export default function Home() {
 
           <div className="space-y-5 sm:space-y-6 mb-8 sm:mb-10">
             <p className="text-ink text-lg sm:text-xl md:text-2xl leading-relaxed ink-reveal-subtle delay-3">
-              enthusiast of healthtech and emergent technologies. i currently do
-              product at{" "}
+              enthusiast of emergent technologies. i currently do product at{" "}
               <a
                 href="https://heidihealth.com"
                 target="_blank"
@@ -61,8 +60,17 @@ export default function Home() {
               <FaXTwitter className="h-5 w-5" />
             </a>
             <a
-              href="mailto:shreyankkadadi@gmail.com"
+              href="https://github.com/sk28832"
+              target="_blank"
+              rel="noopener noreferrer"
               className="social-icon social-reveal delay-7"
+              aria-label="GitHub"
+            >
+              <FaGithub className="h-5 w-5" />
+            </a>
+            <a
+              href="mailto:shreyankkadadi@gmail.com"
+              className="social-icon social-reveal delay-8"
               aria-label="Email"
             >
               <FaEnvelope className="h-5 w-5" />

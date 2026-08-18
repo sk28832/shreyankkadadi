@@ -11,16 +11,16 @@ const shipporiMincho = Shippori_Mincho({
 
 export const metadata: Metadata = {
   title: "shreyank kadadi",
-  description: "enthusiast of healthtech and emergent technologies. i currently do product at heidi.",
+  description: "enthusiast of emergent technologies. i currently do product at heidi.",
   openGraph: {
     title: "shreyank kadadi",
-    description: "enthusiast of healthtech and emergent technologies. i currently do product at heidi.",
+    description: "enthusiast of emergent technologies. i currently do product at heidi.",
     type: "website",
   },
   twitter: {
     card: "summary",
     title: "shreyank kadadi",
-    description: "enthusiast of healthtech and emergent technologies. i currently do product at heidi.",
+    description: "enthusiast of emergent technologies. i currently do product at heidi.",
     creator: "@sk28832",
   },
 };
