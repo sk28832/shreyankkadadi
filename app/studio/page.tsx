@@ -4,12 +4,19 @@ import {
   PageShell,
   SiteNav,
 } from "@/components/site/chrome";
-import { EntryWell } from "@/components/studio/entry-well";
-import { STUDIO_PROJECTS } from "@/lib/studio/projects";
+import { GameFeature } from "@/components/studio/game-feature";
+import { PaperRow } from "@/components/studio/paper-row";
+import { SectionHeading } from "@/components/studio/section-heading";
+import { ToolCard } from "@/components/studio/tool-card";
+import {
+  STUDIO_GAME,
+  STUDIO_PAPERS,
+  STUDIO_TOOLS,
+} from "@/lib/studio/projects";
 
 export const metadata: Metadata = {
   title: "studio — shreyank kadadi",
-  description: "things i've worked on — tools, a game, and research.",
+  description: "things i've worked on — tools, research, and a game.",
 };
 
 export default function StudioPage() {
@@ -24,15 +31,56 @@ export default function StudioPage() {
 
         <BrushDivider className="mb-10 sm:mb-14" />
 
-        <p className="text-lg sm:text-xl text-ink leading-relaxed mb-12 sm:mb-14 ink-reveal-subtle delay-3 max-w-2xl">
+        <p className="text-lg sm:text-xl text-ink leading-relaxed mb-16 sm:mb-20 ink-reveal-subtle delay-3 max-w-2xl">
           these are the things i&apos;ve worked on.
         </p>
 
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {STUDIO_PROJECTS.map((project, i) => (
-            <EntryWell key={project.slug} project={project} index={i} />
-          ))}
-        </ul>
+        <section className="mb-20 sm:mb-28">
+          <SectionHeading
+            index="01"
+            label="tools"
+            blurb="software you can open and use. each one started because the thing it does had no good version yet."
+            delay="delay-3"
+          />
+          <ul className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2">
+            {STUDIO_TOOLS.map((tool, i) => (
+              <ToolCard
+                key={tool.slug}
+                tool={tool}
+                delay={`delay-${Math.min(i + 4, 7)}`}
+              />
+            ))}
+          </ul>
+        </section>
+
+        <section className="mb-20 sm:mb-28">
+          <SectionHeading
+            index="02"
+            label="research"
+            blurb="published and academic work, listed as it was written. the study pages explain the method behind each one."
+            delay="delay-4"
+          />
+          <ol className="border-b border-stone/25">
+            {STUDIO_PAPERS.map((paper, i) => (
+              <PaperRow
+                key={paper.slug}
+                paper={paper}
+                index={i + 1}
+                delay={`delay-${Math.min(i + 5, 7)}`}
+              />
+            ))}
+          </ol>
+        </section>
+
+        <section>
+          <SectionHeading
+            index="03"
+            label="game"
+            blurb="one game, finished and playable, built in godot over a few weeks."
+            delay="delay-5"
+          />
+          <GameFeature game={STUDIO_GAME} delay="delay-6" />
+        </section>
       </main>
     </PageShell>
   );

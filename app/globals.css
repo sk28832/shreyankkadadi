@@ -318,19 +318,20 @@
   }
 }
 
-/* ===== hanga entry preview peel ===== */
-.hanga-preview-layer {
-  animation: hangaPreviewPeel 2.8s var(--ease-settle) infinite;
+/* ===== hanga entry preview — blocks lift out of the print in turn ===== */
+.hanga-block {
+  animation: hangaBlockLift 6s var(--ease-settle) infinite;
+  transform-box: fill-box;
+  transform-origin: left center;
 }
 
-.hanga-preview-layer-0 { animation-delay: 0s; }
-.hanga-preview-layer-1 { animation-delay: 0.08s; }
-.hanga-preview-layer-2 { animation-delay: 0.16s; }
-.hanga-preview-layer-3 { animation-delay: 0.24s; }
+.hanga-block-0 { animation-delay: 0s; }
+.hanga-block-1 { animation-delay: 0.5s; }
+.hanga-block-2 { animation-delay: 1s; }
 
-@keyframes hangaPreviewPeel {
-  0%, 100% { transform: translate(0, 0); opacity: 1; }
-  50% { transform: translate(4px, -3px); opacity: 0.88; }
+@keyframes hangaBlockLift {
+  0%, 55%, 100% { transform: translateX(0); opacity: 0.75; }
+  18%, 38% { transform: translateX(3px); opacity: 1; }
 }
 
 /* ===== study scrolly visuals ===== */
@@ -469,4 +470,149 @@
 @keyframes studyMergePulse {
   0%, 100% { opacity: 0.4; transform: scale(1); }
   50% { opacity: 0.7; transform: scale(0.98); }
+}
+
+/* ===== Studio index — per-section motifs ===== */
+
+/* Section rules draw themselves left to right on entry. */
+.studio-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--stone) 0%,
+    rgba(147, 161, 161, 0.35) 55%,
+    transparent 100%
+  );
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation: studioRuleDraw 1.1s var(--ease-brush) forwards;
+}
+
+@keyframes studioRuleDraw {
+  to { transform: scaleX(1); }
+}
+
+/* Tools — a slow ink wash over the tile, plus a sweep on hover. */
+.tool-tile {
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-wash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 90% at 20% 0%,
+    rgba(139, 69, 19, 0.22) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  animation: toolWashBreathe 7s ease-in-out infinite;
+}
+
+@keyframes toolWashBreathe {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.5; }
+}
+
+.tool-sweep {
+  position: absolute;
+  inset: -20% -60%;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 38%,
+    rgba(253, 246, 227, 0.5) 50%,
+    transparent 62%
+  );
+  transform: translateX(-70%);
+  opacity: 0;
+  transition: transform 900ms var(--ease-brush), opacity 300ms ease;
+}
+
+.group:hover .tool-sweep {
+  transform: translateX(70%);
+  opacity: 1;
+}
+
+.tool-figure {
+  transition: transform 600ms var(--ease-settle);
+}
+
+.group:hover .tool-figure {
+  transform: scale(1.03);
+}
+
+/* Research — the catalogue figure warms up as you read the row. */
+.paper-figure {
+  filter: saturate(0.55);
+  transition: filter 500ms var(--ease-brush), transform 500ms var(--ease-brush);
+}
+
+.group:hover .paper-figure {
+  filter: saturate(1);
+  transform: scale(1.04);
+}
+
+/* Game — layered stage that drifts on its own and separates on hover. */
+.kokoro-stage-layer {
+  position: absolute;
+  inset: 0;
+  transition: transform 700ms var(--ease-settle);
+  will-change: transform;
+}
+
+.kokoro-moon {
+  animation: kokoroMoonGlow 6s ease-in-out infinite;
+}
+
+@keyframes kokoroMoonGlow {
+  0%, 100% { opacity: 0.72; }
+  50% { opacity: 1; }
+}
+
+.kokoro-drift {
+  animation: kokoroDrift 9s ease-in-out infinite;
+}
+
+@keyframes kokoroDrift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.group:hover .kokoro-far { transform: translateY(-7px) scale(1.02); }
+.group:hover .kokoro-mid { transform: translateY(-3px) scale(1.03); }
+.group:hover .kokoro-near { transform: translateY(5px) scale(1.05); }
+
+/* Percentages on `top` resolve against the stage, so the fall covers it at any height. */
+.kokoro-petal {
+  position: absolute;
+  top: -8%;
+  width: 5px;
+  height: 5px;
+  border-radius: 60% 10% 60% 10%;
+  background: rgba(245, 222, 226, 0.85);
+  opacity: 0;
+  animation: kokoroPetalFall 11s linear infinite;
+}
+
+@keyframes kokoroPetalFall {
+  0% { top: -8%; transform: translateX(0) rotate(0deg); opacity: 0; }
+  12% { opacity: 0.85; }
+  86% { opacity: 0.85; }
+  100% { top: 104%; transform: translateX(-26px) rotate(260deg); opacity: 0; }
+}
+
+/* Continuous motifs are decorative; stop them when motion is unwelcome. */
+@media (prefers-reduced-motion: reduce) {
+  .tool-wash,
+  .kokoro-moon,
+  .kokoro-drift,
+  .kokoro-petal {
+    animation: none;
+  }
+  .kokoro-petal { opacity: 0; }
+  .tool-wash { opacity: 0.16; }
+  .studio-rule { transform: scaleX(1); }
 }
