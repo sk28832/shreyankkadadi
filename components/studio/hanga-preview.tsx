@@ -10,7 +10,7 @@ const LAYERS = [
 export function HangaPreview({ className = "" }: { className?: string }) {
   return (
     <div
-      className={`hanga-preview relative w-24 h-16 shrink-0 overflow-hidden rounded-sm bg-parchment/80 border border-stone/20 ${className}`}
+      className={`hanga-preview relative w-full h-full overflow-hidden bg-parchment/80 ${className}`}
       aria-hidden
     >
       {LAYERS.map((src, i) => (

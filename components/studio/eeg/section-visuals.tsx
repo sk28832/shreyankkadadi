@@ -80,24 +80,135 @@ function Waveform() {
   );
 }
 
-function ArchGrid() {
-  const cells = [
-    "/studio/eeg/arch-cnn.png",
-    "/studio/eeg/arch-lstm.png",
-    "/studio/eeg/arch-convlstm.png",
-    "/studio/eeg/arch-convgru.png",
-  ];
+function HybridStack() {
   return (
-    <div className="study-visual-inner grid grid-cols-2 gap-1.5 w-full aspect-[4/3] rounded-sm overflow-hidden border border-stone/20 bg-washi p-1.5">
-      {cells.map((src) => (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          key={src}
-          src={src}
-          alt=""
-          className="w-full h-full object-cover rounded-sm bg-ink/5"
+    <div className="study-visual-inner w-full aspect-[4/3] rounded-sm border border-stone/20 bg-washi p-5 flex items-center justify-center">
+      <svg viewBox="0 0 280 180" className="w-full max-w-md" aria-hidden>
+        <rect
+          x="20"
+          y="24"
+          width="100"
+          height="48"
+          rx="3"
+          fill="var(--parchment)"
+          stroke="var(--ink)"
+          strokeWidth="1.2"
         />
-      ))}
+        <text
+          x="70"
+          y="52"
+          textAnchor="middle"
+          fill="var(--ink)"
+          style={{ fontSize: 11 }}
+        >
+          conv · eegnex
+        </text>
+
+        <path
+          d="M70 72 V92"
+          stroke="var(--ink)"
+          strokeWidth="1.2"
+          markerEnd="url(#eegArr)"
+        />
+
+        <rect
+          x="20"
+          y="92"
+          width="100"
+          height="40"
+          rx="3"
+          fill="var(--parchment)"
+          stroke="var(--umber)"
+          strokeWidth="1.3"
+        />
+        <text
+          x="70"
+          y="116"
+          textAnchor="middle"
+          fill="var(--umber)"
+          style={{ fontSize: 11 }}
+        >
+          lstm / gru
+        </text>
+
+        <path
+          d="M70 132 V148"
+          stroke="var(--ink)"
+          strokeWidth="1.2"
+          markerEnd="url(#eegArr)"
+        />
+
+        <rect
+          x="35"
+          y="148"
+          width="70"
+          height="24"
+          rx="3"
+          fill="var(--parchment)"
+          stroke="var(--ink)"
+          strokeWidth="1.2"
+        />
+        <text
+          x="70"
+          y="164"
+          textAnchor="middle"
+          fill="var(--ink)"
+          style={{ fontSize: 10 }}
+        >
+          4 classes
+        </text>
+
+        <g transform="translate(150 40)">
+          {[
+            { label: "pure rnn", note: "overfits", opacity: 0.35 },
+            { label: "pure cnn", note: "~70%", opacity: 0.55 },
+            { label: "hybrid", note: "73%", opacity: 0.95 },
+          ].map((row, i) => (
+            <g key={row.label} transform={`translate(0 ${i * 40})`}>
+              <rect
+                width="110"
+                height="30"
+                rx="2"
+                fill="var(--parchment)"
+                stroke="var(--ink)"
+                strokeWidth="1"
+                opacity={row.opacity}
+              />
+              <text
+                x="12"
+                y="13"
+                fill="var(--ink)"
+                style={{ fontSize: 10 }}
+                opacity={row.opacity}
+              >
+                {row.label}
+              </text>
+              <text
+                x="12"
+                y="24"
+                fill="var(--umber)"
+                style={{ fontSize: 9 }}
+                opacity={row.opacity}
+              >
+                {row.note}
+              </text>
+            </g>
+          ))}
+        </g>
+
+        <defs>
+          <marker
+            id="eegArr"
+            markerWidth="6"
+            markerHeight="6"
+            refX="5"
+            refY="3"
+            orient="auto"
+          >
+            <path d="M0,0 L6,3 L0,6 Z" fill="var(--ink)" />
+          </marker>
+        </defs>
+      </svg>
     </div>
   );
 }
@@ -123,7 +234,8 @@ function SubjectBars() {
         </div>
       ))}
       <p className="text-[11px] text-stone font-serif leading-relaxed">
-        validation accuracy on the same holdout — pooling subjects beat training on subject 1 alone.
+        validation on the same holdout — pooling subjects beat training on
+        subject 1 alone.
       </p>
     </div>
   );
@@ -132,7 +244,7 @@ function SubjectBars() {
 const VISUALS: Record<EegSectionId, ReactNode> = {
   problem: <Waveform />,
   window: <SubjectBars />,
-  hybrids: <ArchGrid />,
+  hybrids: <HybridStack />,
   dilation: <AccuracyBars />,
 };
 

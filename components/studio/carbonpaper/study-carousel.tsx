@@ -12,7 +12,8 @@ import {
 export function CarbonpaperStudy() {
   return (
     <StudyCarousel
-      title="carbonpaper"
+      name="carbonpaper"
+      title="an ai document editor with tracked edits"
       hero={HERO}
       sections={CARBON_PAPER_SECTIONS}
       renderVisual={(id) => <CarbonpaperSectionVisual id={id} />}

@@ -13,19 +13,20 @@ type Props = {
 };
 
 function Preview({ project }: { project: StudioProject }) {
+  const tileClass = "w-full h-full border-0 rounded-none";
   switch (project.preview) {
     case "hanga":
-      return <HangaPreview />;
+      return <HangaPreview className={tileClass} />;
     case "kokoro":
-      return <KokoroPreview />;
+      return <KokoroPreview className={tileClass} />;
     case "eeg":
-      return <EegPreview />;
+      return <EegPreview className={tileClass} />;
     case "interactomes":
-      return <InteractomesPreview />;
+      return <InteractomesPreview className={tileClass} />;
     case "carbonpaper":
-      return <CarbonpaperPreview />;
+      return <CarbonpaperPreview className={tileClass} />;
     case "glaucoma":
-      return <GlaucomaPreview />;
+      return <GlaucomaPreview className={tileClass} />;
     case "none":
       return null;
     default: {
@@ -37,20 +38,29 @@ function Preview({ project }: { project: StudioProject }) {
 
 export function EntryWell({ project, index = 0 }: Props) {
   return (
-    <li className={`ink-reveal-subtle delay-${Math.min(index + 4, 7)}`}>
+    <li className={`ink-reveal-subtle delay-${Math.min(index + 4, 7)} h-full`}>
       <Link
         href={project.href}
-        className="group flex gap-5 sm:gap-6 p-4 sm:p-5 rounded-sm bg-parchment/50 border border-stone/30 hover:border-umber/40 hover:-translate-y-0.5 transition-all motion-fast"
+        className="group flex h-full flex-col rounded-sm bg-parchment/50 border border-stone/30 hover:border-umber/40 hover:-translate-y-0.5 transition-all motion-fast overflow-hidden"
       >
-        <Preview project={project} />
-        <div className="min-w-0 flex-1 flex flex-col justify-center gap-2">
-          <h2 className="font-serif text-xl sm:text-2xl text-ink group-hover:text-umber transition-colors motion-fast">
+        <div className="relative w-full aspect-[16/10] bg-washi border-b border-stone/20 overflow-hidden">
+          <Preview project={project} />
+        </div>
+
+        <div className="flex flex-1 flex-col gap-3 p-5 sm:p-6">
+          <p className="text-stone text-xs sm:text-sm font-serif tracking-wide">
+            {project.name}
+          </p>
+          <h2 className="font-serif text-2xl sm:text-3xl text-ink leading-[1.15] group-hover:text-umber transition-colors motion-fast">
             {project.title}
           </h2>
           <p className="text-brush-gray text-sm sm:text-base leading-relaxed">
-            {project.tagline}
+            {project.blurb}
           </p>
-          <p className="text-stone text-xs sm:text-sm font-serif tabular-nums">
+          <p className="mt-auto pt-2 text-ink text-sm font-serif leading-relaxed">
+            {project.outcome}
+          </p>
+          <p className="text-stone text-xs font-serif tabular-nums">
             {project.year} · {project.kind}
           </p>
         </div>

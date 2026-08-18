@@ -11,7 +11,8 @@ import {
 export function InteractomesStudy() {
   return (
     <StudyCarousel
-      title="functional interactomes"
+      name="fis · neural dynamics"
+      title="map causal protein links across the brain"
       hero={HERO}
       sections={INTERACTOMES_SECTIONS}
       renderVisual={(id) => <InteractomesSectionVisual id={id} />}

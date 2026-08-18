@@ -11,8 +11,14 @@ export type StudioPreview =
 
 export type StudioProject = {
   slug: string;
+  /** Short product / project label shown above the title */
+  name: string;
+  /** Plain-English line — what it is, large on the tile */
   title: string;
-  tagline: string;
+  /** Two sentences: what you built + why it matters */
+  blurb: string;
+  /** One concrete ship signal */
+  outcome: string;
   href: string;
   preview: StudioPreview;
   year: number;
@@ -22,8 +28,11 @@ export type StudioProject = {
 export const STUDIO_PROJECTS: StudioProject[] = [
   {
     slug: "hanga",
-    title: "hanga",
-    tagline: "woodblock deconstruction engine — calibrated on hiroshige",
+    name: "hanga",
+    title: "turn any image into a woodblock print plan",
+    blurb:
+      "i built a deconstruction engine that recovers keyblock, colour blocks, bokashi, and print order from a single image — calibrated on hiroshige. it is the inverse of a generator: craft constraints in, a workshop plan out.",
+    outcome: "live tool · calibrated on edo prints",
     href: "/studio/hanga",
     preview: "hanga",
     year: 2025,
@@ -31,8 +40,11 @@ export const STUDIO_PROJECTS: StudioProject[] = [
   },
   {
     slug: "kokoro",
-    title: "kokoro no tōkaidō",
-    tagline: "a meditative platformer along the fifty-three stations",
+    name: "kokoro no tōkaidō",
+    title: "a playable walk along hiroshige’s road",
+    blurb:
+      "a meditative platformer i shipped in the browser — five stations, celeste-style jumps, public-domain woodblock backdrops. short enough to finish in an evening; quiet enough to feel like a print.",
+    outcome: "playable in-browser · godot 4",
     href: "/studio/kokoro",
     preview: "kokoro",
     year: 2025,
@@ -40,8 +52,11 @@ export const STUDIO_PROJECTS: StudioProject[] = [
   },
   {
     slug: "eeg",
-    title: "eeg classification",
-    tagline: "hybrid cnn/rnn motor-imagery classifier — 73% on four classes",
+    name: "eeg study",
+    title: "classify imagined movement from brain signals",
+    blurb:
+      "hybrid cnn/rnn models that read motor imagery — left hand, right hand, legs, tongue — from 22-channel eeg. pure rnns overfit; stacking convolutions with lstm/gru and dilation is what actually worked.",
+    outcome: "73% test accuracy · open source",
     href: "/studio/eeg",
     preview: "eeg",
     year: 2023,
@@ -49,8 +64,11 @@ export const STUDIO_PROJECTS: StudioProject[] = [
   },
   {
     slug: "interactomes",
-    title: "functional interactomes",
-    tagline: "fis calculator — causal neural protein networks from 150+ studies",
+    name: "fis · neural dynamics",
+    title: "map causal protein links across the brain",
+    blurb:
+      "a calculator and network pipeline from my ucla neural dynamics thesis. instead of predictive association scores, edges come from experimental causal effects across 150+ studies — then topology finds hubs.",
+    outcome: "thesis · directed fis networks",
     href: "/studio/interactomes",
     preview: "interactomes",
     year: 2023,
@@ -58,8 +76,11 @@ export const STUDIO_PROJECTS: StudioProject[] = [
   },
   {
     slug: "carbonpaper",
-    title: "carbonpaper",
-    tagline: "ai-assisted document editor with tracked changes and chat",
+    name: "carbonpaper",
+    title: "an ai document editor with tracked edits",
+    blurb:
+      "a next.js editor i shipped with carbonai on the side — select text, get a suggestion, accept or reject inline. built for dense docs where a silent rewrite is the wrong product.",
+    outcome: "live on vercel · source on github",
     href: "/studio/carbonpaper",
     preview: "carbonpaper",
     year: 2024,
@@ -67,8 +88,11 @@ export const STUDIO_PROJECTS: StudioProject[] = [
   },
   {
     slug: "glaucoma",
-    title: "ai & eye",
-    tagline: "bimodal oct + metrics model — normal / mild-moderate / severe",
+    name: "ai & eye",
+    title: "grade glaucoma severity from oct + clinic numbers",
+    blurb:
+      "a published bimodal fusion model: one stream reads the oct scan, the other the rnfl / vcdr / rim / cup metrics, late-fused into normal vs mild-moderate vs severe — not just diseased-or-not.",
+    outcome: "published 2024 · tnoa journal",
     href: "/studio/glaucoma",
     preview: "glaucoma",
     year: 2024,

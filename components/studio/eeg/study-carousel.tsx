@@ -11,7 +11,8 @@ import {
 export function EegStudy() {
   return (
     <StudyCarousel
-      title="eeg classification"
+      name="eeg study"
+      title="classify imagined movement from brain signals"
       hero={HERO}
       sections={EEG_SECTIONS}
       renderVisual={(id) => <EegSectionVisual id={id} />}

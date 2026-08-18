@@ -28,6 +28,7 @@ export type StudyCta = {
 
 type Props<Id extends string> = {
   title: string;
+  name?: string;
   hero: { primary: string; secondary: string };
   sections: StudySection<Id>[];
   renderVisual: (id: Id) => ReactNode;
@@ -36,6 +37,7 @@ type Props<Id extends string> = {
 
 export function StudyCarousel<Id extends string>({
   title,
+  name,
   hero,
   sections,
   renderVisual,
@@ -69,7 +71,13 @@ export function StudyCarousel<Id extends string>({
       <main className="relative z-10 px-8 sm:px-16 md:px-24 lg:px-32 py-20 sm:py-24 max-w-5xl mx-auto">
         <SiteNav active="studio" />
 
-        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-ink mb-10 sm:mb-14 leading-[1.1] ink-reveal delay-1">
+        {name ? (
+          <p className="text-stone text-sm sm:text-base font-serif tracking-wide mb-4 ink-reveal delay-1">
+            {name}
+          </p>
+        ) : null}
+
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-ink mb-10 sm:mb-14 leading-[1.15] ink-reveal delay-1">
           {title}
         </h1>
 

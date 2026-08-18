@@ -11,7 +11,8 @@ import {
 export function GlaucomaStudy() {
   return (
     <StudyCarousel
-      title="ai & eye"
+      name="ai & eye"
+      title="grade glaucoma severity from oct + clinic numbers"
       hero={HERO}
       sections={GLAUCOMA_SECTIONS}
       renderVisual={(id) => <GlaucomaSectionVisual id={id} />}
