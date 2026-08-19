@@ -39,7 +39,7 @@ export default function StudioPage() {
           <SectionHeading
             index="01"
             label="tools"
-            blurb="software you can open and use. each one started because the thing it does had no good version yet."
+            blurb="cool tools i've made"
             delay="delay-3"
           />
           <ul className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2">
@@ -57,7 +57,7 @@ export default function StudioPage() {
           <SectionHeading
             index="02"
             label="research"
-            blurb="published and academic work, listed as it was written. the study pages explain the method behind each one."
+            blurb="published and academic work."
             delay="delay-4"
           />
           <ol className="border-b border-stone/25">
@@ -76,7 +76,7 @@ export default function StudioPage() {
           <SectionHeading
             index="03"
             label="game"
-            blurb="one game, finished and playable, built in godot over a few weeks."
+            blurb="games i've made"
             delay="delay-5"
           />
           <GameFeature game={STUDIO_GAME} delay="delay-6" />
