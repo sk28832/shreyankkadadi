@@ -1,4 +1,4 @@
-export type StudioToolPreview = "hanga" | "carbonpaper";
+export type StudioToolPreview = "hikoki" | "hanga" | "carbonpaper";
 export type StudioPaperFigure = "glaucoma" | "eeg" | "interactomes";
 
 export type StudioTool = {
@@ -51,6 +51,22 @@ export type StudioGame = {
 };
 
 export const STUDIO_TOOLS: StudioTool[] = [
+  {
+    slug: "hikoki",
+    name: "hikoki",
+    title: "flight companion for your people",
+    summary:
+      "texts the people you love when you take off, land, or run late. warm and personal, without another flight tracker to check.",
+    does: [
+      "track a flight or whole multi-leg trip",
+      "add parents, partners, and friends with messages written for each relationship",
+      "send gentle SMS updates on takeoff, landing, delays, and gate changes",
+    ],
+    href: "/studio/hikoki",
+    live: { href: "https://hikoki.shreyankkadadi.com", label: "open hikoki" },
+    year: 2026,
+    preview: "hikoki",
+  },
   {
     slug: "hanga",
     name: "hanga",

@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { CarbonpaperPreview } from "@/components/studio/carbonpaper-preview";
 import { HangaPreview } from "@/components/studio/hanga-preview";
+import { HikokiPreview } from "@/components/studio/hikoki-preview";
 import type { StudioTool } from "@/lib/studio/projects";
 
 function Figure({ tool }: { tool: StudioTool }) {
   const className = "w-full h-full border-0 rounded-none";
   switch (tool.preview) {
+    case "hikoki":
+      return <HikokiPreview className={className} />;
     case "hanga":
       return <HangaPreview className={className} />;
     case "carbonpaper":
